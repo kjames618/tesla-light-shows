@@ -50,6 +50,13 @@ def rnd(i):
     return ((i * 2654435761) % 100000) / 100000.0
 
 
+# Each chorus/section is explicitly more intense than the previous one, so the
+# escalation reads visually (not just via the randomized bursts).
+SECTION_INTENSITY = {
+    "hook1": 0.55, "verse1": 0.50, "hook2": 0.72, "final": 0.90,
+}
+
+
 # Left->right sweep chain across the whole car (single channels) for wave effects.
 WAVE = list(reversed(L.left_side)) + L.right_side
 HAZARD = L.front_turn + L.rear_turn        # all four corners = hazards
@@ -82,6 +89,14 @@ def big(b, t, dt, g):
     back = b["beat_in_bar"] in (1, 3)
     bar = b["bar"]
     strong = onset > 0.20
+
+    # --- sustained underglow that GROWS each chorus, so escalation reads visually ---
+    if g > 0.60:
+        show.on(L.side_marker, t, t + dt)
+    if g > 0.78:
+        show.on(L.aux_park, t, t + dt)
+    if g > 0.88:
+        show.on(L.tail, t, t + dt)
 
     # --- constant movement: alternating signature on every beat (no dead space) ---
     show.flash(L.signature[:1] if b["i"] % 2 == 0 else L.signature[1:], t, dt * 0.45)
@@ -157,10 +172,10 @@ for i, b in enumerate(beats):
         continue
 
     if sec == "breakdown":
-        # strip to the flute; build tension; riser + blackout before the re-drop
+        # strip HARD to the flute for max contrast; build tension; riser into re-drop
         if t < 112.0:
-            flute_wave(b, t, dt, intensity=1.0)
-            if b["beat_in_bar"] == 0:
+            flute_wave(b, t, dt, intensity=0.3)        # sparse single-dot wave
+            if b["beat_in_bar"] == 0 and b["bar"] % 2 == 0:
                 show.mirror_fold(t, hold=0.5)
         else:
             # accelerating strobe riser into the 1:55 re-drop
@@ -186,8 +201,11 @@ for i, b in enumerate(beats):
             show.flash(HAZARD, t, 0.05)
         continue
 
-    # all remaining high-energy sections: hook1 / verse1 / hook2 / final
-    big(b, t, dt, g)
+    # all remaining high-energy sections: hook1 / verse1 / hook2 / final.
+    # Escalate by the LATER of (time-based g) and (this section's intensity),
+    # so every chorus is denser than the one before it.
+    si = SECTION_INTENSITY.get(sec, 0.5)
+    big(b, t, dt, max(g, si))
 
 # ---- FINALE: one massive synchronized hit on the last musical beat, then black ----
 last = None

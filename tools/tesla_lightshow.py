@@ -204,6 +204,10 @@ class Show:
         """Hold channels on across [t0, t1) seconds."""
         self._set(channels, t0, t1, value)
 
+    def off(self, channels, t0, t1):
+        """Force channels off across [t0, t1), creating a hard blackout cut."""
+        self._set(channels, t0, t1, 0)
+
     def flash(self, channels, t, dur=0.08, value=None):
         """Sharp accent flash."""
         self._set(channels, t, t + dur, value)

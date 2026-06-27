@@ -45,17 +45,18 @@ liftgate and Falcon doors as accents. Cybertruck, S/Plaid, 3/Y, X — all covere
 | Time | Section | Energy | What happens |
 |------|---------|:------:|--------------|
 | 0:00–0:05 | silence | ▁ | dark |
-| 0:05–0:17 | intro | ▂ | lone alternating signature blips, tension build |
-| 0:17–0:49 | verse 1 | ▄ | controlled L↔R body walk, fog accents on real hi-hats |
-| 0:49–1:05 | **drop 1** | █ | downbeat slams, symmetric pulses, charge-port pop, cross-body strobe |
+| 0:05–0:12 | intro | ▂ | ominous front/rear pulses with severe black space |
+| 0:12–0:17 | countdown | ▃→█ | accelerating zone glitches, false launch, blackout |
+| 0:17–0:49 | verse 1 | ▄ | full-rig ignition, syncopated body walk, drum ratchets and four-bar fills |
+| 0:49–1:05 | **drop 1** | █ | triple-hit slams, blackout cuts, charge-port pop, rapid zone strobes |
 | 1:05–1:07 | lull | ▂ | hard pullback for contrast |
 | 1:07–1:47 | verse 2 | ▆ | denser walk, traveling waves, mirror folds at phrase ends |
-| 1:47–2:40 | chorus body | █ | sustained big choreography, waves + charge-port accents |
+| 1:47–2:40 | chorus body | █ | reversing waves, transient glitches, alternating blackouts and strobe fills |
 | 2:40–2:42 | transition | ▃ | dip |
 | 2:42–3:08 | **build 2** | █ | reversing waves, window dips — the rig roars |
 | 3:08–3:16 | **breakdown** | ▁ | strips to near-darkness; slow tension pulses + mirror fold |
-| 3:16–3:37 | rebuild | ▃→▆ | accelerating riser chase climbing into the peak |
-| 3:37–3:58 | **climax** | █ | most elaborate: layered ripples, windows, Falcon flare, alternating with darkness |
+| 3:16–3:37 | rebuild | ▃→▆ | accelerating chases, triplet slams, increasingly dense strobe ratchets |
+| 3:37–3:58 | **climax** | █ | frantic one-ring ripples, machine-gun strobes, windows and Falcon flare |
 | ~3:58 | **final hit** | █ | one massive full-vehicle cue (lights + all closures) |
 | 3:58–4:15 | outro | ▁ | blackout into the silence |
 

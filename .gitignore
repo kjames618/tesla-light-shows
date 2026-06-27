@@ -1,0 +1,27 @@
+# xLights working/backup files
+*.xbkp
+xlights_*.xml
+xlights_networks.xml
+xlights_rgbeffects.xml
+*.log
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Large audio masters (keep these out of git; commit a note instead).
+# Comment these out if you DO want to version your audio.
+*.wav
+*.flac
+*.aac
+
+# Temp / scratch
+*.tmp
+*~

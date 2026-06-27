@@ -9,18 +9,20 @@ steady (Overcompensate is a locked 95 BPM); the downbeat phase is found by a
 comb-filter search over the onset envelope.
 
 Usage:
-    python3 build_beatmap.py lightshow.wav beatmap.json [bpm]
+    python3 build_beatmap.py lightshow.wav beatmap.json [bpm] [sections.json]
 
-Sections are derived from the real energy envelope (boundaries below were read off
-this exact file). Adjust SECTIONS if you use a different cut of the song.
+Sections describe the song's structure as [start_s, name, tier] rows. Pass a
+per-show sections.json (4th arg) to override; otherwise a sibling `sections.json`
+next to the output is used if present, else the built-in default below.
 """
+import os
 import sys
 import json
 import wave
 import numpy as np
 
 # (start_s, name, tier)  tier: 0 dark .. 3 peak — a hint; real energy still modulates.
-SECTIONS = [
+DEFAULT_SECTIONS = [
     (0.0,   "silence_intro", 0),
     (5.0,   "intro",         1),
     (17.0,  "verse1",        2),
@@ -37,6 +39,23 @@ SECTIONS = [
     (239.0, "outro_silence", 0),
 ]
 
+SECTIONS = DEFAULT_SECTIONS          # overridden in main() if a sections file is given
+
+
+def _load_sections(out_path):
+    """4th CLI arg, else sibling sections.json, else the built-in default."""
+    path = None
+    if len(sys.argv) > 4:
+        path = sys.argv[4]
+    else:
+        sib = os.path.join(os.path.dirname(os.path.abspath(out_path)), "sections.json")
+        if os.path.exists(sib):
+            path = sib
+    if path:
+        rows = json.load(open(path))
+        return [(float(r[0]), str(r[1]), int(r[2])) for r in rows], path
+    return DEFAULT_SECTIONS, None
+
 
 def section_for(t):
     name, tier = SECTIONS[0][1], SECTIONS[0][2]
@@ -49,9 +68,13 @@ def section_for(t):
 
 
 def main():
+    global SECTIONS
     wav = sys.argv[1] if len(sys.argv) > 1 else "lightshow.wav"
     out = sys.argv[2] if len(sys.argv) > 2 else "beatmap.json"
     bpm = float(sys.argv[3]) if len(sys.argv) > 3 else 95.0
+    SECTIONS, secpath = _load_sections(out)
+    if secpath:
+        print(f"Using sections from {secpath}")
 
     w = wave.open(wav, "rb")
     sr = w.getframerate()

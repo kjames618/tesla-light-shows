@@ -70,8 +70,9 @@ with no lingering lights.
    folder on a USB drive — see [../../docs/usb-setup.md](../../docs/usb-setup.md).
 3. In the car: **Toybox → Light Show**, pick the show, **Activate** (in Park).
 
-> `.wav`/`.mp3` are git-ignored, so the copyrighted audio never gets committed —
-> only the light data (`lightshow.fseq`) and the analysis (`beatmap.json`) are.
+> The audio (`lightshow.wav` and `lightshow.mp3`) is committed to this repo with
+> the owner's permission. On your USB, put only **one** audio file next to the
+> `.fseq` (same base name) — the `.mp3` is smaller; the `.wav` is highest quality.
 
 ## Fine-tuning
 

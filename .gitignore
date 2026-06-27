@@ -16,11 +16,8 @@ __pycache__/
 .venv/
 venv/
 
-# Large audio masters (keep these out of git; commit a note instead).
-# Comment these out if you DO want to version your audio.
-*.wav
-*.flac
-*.aac
+# Audio is versioned in this repo (owner has rights/permission to distribute).
+# If you ever add a show whose audio you can't redistribute, ignore it per-file.
 
 # Temp / scratch
 *.tmp
